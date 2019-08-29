@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 public class SelectionSort : MonoBehaviour
 {
     public Text inputText;
     public Text outPutText;
+    public Text timeEfficiency;
     public string[] GetInputNumberArray(Text inputText)
     {
         string inputNumber;
@@ -48,8 +49,19 @@ public class SelectionSort : MonoBehaviour
     public void Output()
     {
         string[] outPutNmber = Selection_Sort();
-        outPutText.text = string.Join(" ", outPutNmber);
+        outPutText.text = string.Join(" ", outPutNmber);      
+    }
+
+    public void TimeEfficiency()
+    {
+        int beforTime = Environment.TickCount%10000;
+        for(int i=0;i<100000;i++)
+        {
+            string[] temp = Selection_Sort();
+        }
         
-        
+        int afterTime = Environment.TickCount%10000;
+        Debug.Log(afterTime);
+        timeEfficiency.text = (afterTime-beforTime).ToString()+"ms";
     }
 }
